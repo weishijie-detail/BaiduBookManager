@@ -1,0 +1,3 @@
+com.detail.system.api.factory.RemoteUserFallbackFactory
+com.detail.system.api.factory.RemoteLogFallbackFactory
+com.detail.system.api.factory.RemoteFileFallbackFactory

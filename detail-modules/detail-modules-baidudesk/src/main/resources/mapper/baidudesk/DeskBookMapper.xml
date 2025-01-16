@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.detail.baidudesk.mapper.DeskBookMapper">
+    
+    <resultMap type="DeskBook" id="DeskBookResult">
+        <result property="id"    column="id"    />
+        <result property="bookName"    column="book_name"    />
+        <result property="bookTag"    column="book_tag"    />
+        <result property="source"    column="source"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="notes"    column="notes"    />
+        <result property="baiduLink"    column="baidu_link"    />
+        <result property="kuaishouLink"    column="kuaishou_link"    />
+    </resultMap>
+
+    <sql id="selectDeskBookVo">
+        select id, book_name, book_tag, source, update_time, create_time, notes, baidu_link, kuaishou_link from desk_book
+    </sql>
+
+    <select id="selectDeskBookList" parameterType="DeskBook" resultMap="DeskBookResult">
+        <include refid="selectDeskBookVo"/>
+        <where>  
+            <if test="bookName != null  and bookName != ''"> and book_name like concat('%', #{bookName}, '%')</if>
+            <if test="params.beginBookTag != null and params.beginBookTag != '' and params.endBookTag != null and params.endBookTag != ''"> and book_tag between #{params.beginBookTag} and #{params.endBookTag}</if>
+            <if test="source != null  and source != ''"> and source like concat('%', #{source}, '%')</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="createTime != null "> and create_time = #{createTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectDeskBookById" parameterType="Long" resultMap="DeskBookResult">
+        <include refid="selectDeskBookVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertDeskBook" parameterType="DeskBook" useGeneratedKeys="true" keyProperty="id">
+        insert into desk_book
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookName != null and bookName != ''">book_name,</if>
+            <if test="bookTag != null">book_tag,</if>
+            <if test="source != null">source,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="notes != null">notes,</if>
+            <if test="baiduLink != null">baidu_link,</if>
+            <if test="kuaishouLink != null">kuaishou_link,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookName != null and bookName != ''">#{bookName},</if>
+            <if test="bookTag != null">#{bookTag},</if>
+            <if test="source != null">#{source},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="notes != null">#{notes},</if>
+            <if test="baiduLink != null">#{baiduLink},</if>
+            <if test="kuaishouLink != null">#{kuaishouLink},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDeskBook" parameterType="DeskBook">
+        update desk_book
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bookName != null and bookName != ''">book_name = #{bookName},</if>
+            <if test="bookTag != null">book_tag = #{bookTag},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="notes != null">notes = #{notes},</if>
+            <if test="baiduLink != null">baidu_link = #{baiduLink},</if>
+            <if test="kuaishouLink != null">kuaishou_link = #{kuaishouLink},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDeskBookById" parameterType="Long">
+        delete from desk_book where id = #{id}
+    </delete>
+
+    <delete id="deleteDeskBookByIds" parameterType="String">
+        delete from desk_book where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

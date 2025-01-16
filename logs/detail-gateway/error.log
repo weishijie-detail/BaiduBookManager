@@ -1,0 +1,4 @@
+09:37:48.325 [reactor-http-nio-2] ERROR c.d.g.f.AuthFilter - [unauthorizedResponse,104] - [鉴权异常处理]请求路径:/system/user/getInfo,错误信息:登录状态已过期
+09:38:18.067 [boundedElastic-6] ERROR c.d.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/schedule/job/list,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for detail-job"
+09:45:45.621 [boundedElastic-9] ERROR c.d.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/code/gen/list,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for detail-gen"
+10:00:24.015 [boundedElastic-21] ERROR c.d.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/baidudesk/book/list,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for detail-baidudesk"

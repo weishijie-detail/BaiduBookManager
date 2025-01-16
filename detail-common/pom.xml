@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.detail</groupId>
+        <artifactId>detail</artifactId>
+        <version>3.6.5</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>detail-common-log</module>
+        <module>detail-common-core</module>
+        <module>detail-common-redis</module>
+        <module>detail-common-seata</module>
+        <module>detail-common-swagger</module>
+        <module>detail-common-security</module>
+        <module>detail-common-sensitive</module>
+        <module>detail-common-datascope</module>
+        <module>detail-common-datasource</module>
+    </modules>
+
+    <artifactId>detail-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        detail-common通用模块
+    </description>
+
+</project>
